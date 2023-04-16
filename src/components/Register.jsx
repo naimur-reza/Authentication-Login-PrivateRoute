@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 
 const Register = () => {
@@ -12,12 +12,17 @@ const Register = () => {
     createUser(email, password)
       .then((res) => {
         const loggedUser = res.user;
+        toast.success("Login Successful");
       })
       .catch((err) => {
         console.log(err.message);
       });
     form.reset();
   };
+
+  if (user) {
+    return <Navigate to={"/dashboard"} />;
+  }
   return (
     <div className="hero min-h-screen bg-base-200 ">
       <div className="hero-content max-w-6xl mx-auto flex-col ">
@@ -25,7 +30,7 @@ const Register = () => {
           <h1 className="text-5xl font-bold text-secondary">Register Now!</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleRegister} className="card-body w-96">
+          <form onSubmit={handleRegister} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>

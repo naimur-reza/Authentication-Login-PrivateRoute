@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import { toast } from "react-hot-toast";
 
 const Login = () => {
-  const { signIn, goWithGoogle } = useContext(AuthContext);
+  const { signIn, goWithGoogle, user } = useContext(AuthContext);
   const [error, setError] = useState("");
   const handleForm = (e) => {
     e.preventDefault();
@@ -20,6 +20,9 @@ const Login = () => {
         toast.error("Wrong Password!");
       });
   };
+  if (user) {
+    return <Navigate to={"/dashboard"} />;
+  }
   return (
     <div className="hero min-h-screen bg-base-200 ">
       <div className="hero-content max-w-6xl mx-auto flex-col ">
@@ -27,7 +30,7 @@ const Login = () => {
           <h1 className="text-5xl font-bold text-secondary">Login now!</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleForm} className="card-body w-96">
+          <form onSubmit={handleForm} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>

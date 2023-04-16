@@ -9,8 +9,12 @@ const Header = () => {
     <>
       <div className="navbar bg-neutral bg-opacity-30 ">
         <div className="flex-1 ">
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <a className="btn btn-ghost normal-case text-xl">GullYBoy</a>
+          <div className="font-semibold">
+            <Link to={"/dashboard"}>Dashboard</Link>
+          </div>
         </div>
+
         <div className="flex-none gap-2">
           <div className="form-control">
             <h1 className="text-lg font-medium text-gray-100">{user?.email}</h1>
@@ -18,7 +22,13 @@ const Header = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={user?.photoURL ? user.photoURL : ""} />
+                <img
+                  src={
+                    user?.photoURL
+                      ? user.photoURL
+                      : "https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png"
+                  }
+                />
               </div>
             </label>
             <ul
